@@ -1,29 +1,33 @@
 function computerPlay(){
-    let arrayOfSelection = ['ROCK', 'PAPER', 'SCISSORS'];
+    let arrayOfSelection = ['Rock', 'Paper', 'Scissors'];
     // returns a random integer from 0 to 2
     let i = Math.floor(Math.random() * 3)
     return arrayOfSelection[i];
 }
 
-function playRound(playerSelection, computerSelection) {
-
-    if(playerSelection === computerSelection) {
-        return "Tie!";
-    } 
-    else {
-        switch (playerSelection) {
-            case 'ROCK': 
-            return (computerSelection === 'SCISSORS') ? `You Win! ${playerSelection} beats ${computerSelection}` 
-            : `You Lose! ${computerSelection} beats ${playerSelection}`;
-            case 'PAPER': 
-            return (computerSelection === 'ROCK') ? `You Win! ${playerSelection} beats ${computerSelection}` 
-            : `You Lose! ${computerSelection} beats ${playerSelection}`;
-            case 'SCISSORS': 
-            return (computerSelection === 'PAPER') ? `You Win! ${playerSelection} beats ${computerSelection}` 
-            : `You Lose! ${computerSelection} beats ${playerSelection}`;
-        }
-    }
+function capitalize(string) {
+    return string[0].toUpperCase() + string.substring(1);
 }
+
+// function playRound(playerSelection, computerSelection) {
+
+//     if(playerSelection === computerSelection) {
+//         return "Tie!";
+//     } 
+//     else {
+//         switch (playerSelection) {
+//             case 'Rock': 
+//             return (computerSelection === 'Scissors') ? `You Win! ${playerSelection} beats ${computerSelection}` :
+//             `You Lose! ${computerSelection} beats ${playerSelection}`;
+//             case 'Paper': 
+//             return (computerSelection === 'Rock') ? `You Win! ${playerSelection} beats ${computerSelection}` :
+//             `You Lose! ${computerSelection} beats ${playerSelection}`;
+//             case 'Scissors': 
+//             return (computerSelection === 'Paper') ? `You Win! ${playerSelection} beats ${computerSelection}` :
+//             `You Lose! ${computerSelection} beats ${playerSelection}`;
+//         }
+//     }
+// }
 
 function playRound(playerSelection, computerSelection) {
     let result;
@@ -32,14 +36,14 @@ function playRound(playerSelection, computerSelection) {
     } 
     else {
         switch (playerSelection) {
-            case 'ROCK': 
-            result = (computerSelection === 'SCISSORS') ? `You Win! ${playerSelection} beats ${computerSelection}` 
+            case 'Rock': 
+            result = (computerSelection === 'Scissors') ? `You Win! ${playerSelection} beats ${computerSelection}` 
             : `You Lose! ${computerSelection} beats ${playerSelection}`;
-            case 'PAPER': 
-            result = (computerSelection === 'ROCK') ? `You Win! ${playerSelection} beats ${computerSelection}` 
+            case 'Paper': 
+            result = (computerSelection === 'Rock') ? `You Win! ${playerSelection} beats ${computerSelection}` 
             : `You Lose! ${computerSelection} beats ${playerSelection}`;
-            case 'SCISSORS': 
-            result = (computerSelection === 'PAPER') ? `You Win! ${playerSelection} beats ${computerSelection}` 
+            case 'Scissors': 
+            result = (computerSelection === 'Paper') ? `You Win! ${playerSelection} beats ${computerSelection}` 
             : `You Lose! ${computerSelection} beats ${playerSelection}`;
         }
     }
@@ -51,7 +55,7 @@ function game() {
     let resultOfTheRound;
     let winner;
     for(let i = 0; i < 6; i++) {
-        let playerSelection = prompt("Please enter your choice:").toUpperCase();
+        let playerSelection = capitalize(prompt("Please enter your choice:").toLowerCase());
         resultOfTheRound = playRound(playerSelection, computerPlay());
         score = score + resultOfTheRound[1];
         console.log(resultOfTheRound[0]);
