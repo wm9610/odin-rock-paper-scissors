@@ -70,7 +70,7 @@ function game() {
     return winner;
 }
 
-console.log('Winner is ' + game());
+// console.log('Winner is ' + game());
 
 // console.log(computerPlay());
 
