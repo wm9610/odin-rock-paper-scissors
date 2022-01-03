@@ -29,24 +29,50 @@ function capitalize(string) {
 //     }
 // }
 
-function playRound(playerSelection, computerSelection) {
+// function playRound(playerSelection, computerSelection) {
+//     let result;
+//     if(playerSelection === computerSelection) {
+//         result = "Tie!";
+//     } 
+//     else {
+//         switch (playerSelection) {
+//             case 'Rock': 
+//             result = (computerSelection === 'Scissors') ? `You Win! ${playerSelection} beats ${computerSelection}` 
+//             : `You Lose! ${computerSelection} beats ${playerSelection}`;
+//             case 'Paper': 
+//             result = (computerSelection === 'Rock') ? `You Win! ${playerSelection} beats ${computerSelection}` 
+//             : `You Lose! ${computerSelection} beats ${playerSelection}`;
+//             case 'Scissors': 
+//             result = (computerSelection === 'Paper') ? `You Win! ${playerSelection} beats ${computerSelection}` 
+//             : `You Lose! ${computerSelection} beats ${playerSelection}`;
+//         }
+//     }
+//     return result.includes("win") ? [result, 1] : [result, 0];
+// }
+
+function playRound(e) 
+{
     let result;
+    let playerSelection = e.target.value;
+    let computerSelection = computerPlay();
+    console.log(playerSelection);
     if(playerSelection === computerSelection) {
         result = "Tie!";
     } 
     else {
         switch (playerSelection) {
             case 'Rock': 
-            result = (computerSelection === 'Scissors') ? `You Win! ${playerSelection} beats ${computerSelection}` 
-            : `You Lose! ${computerSelection} beats ${playerSelection}`;
+            result = (computerSelection === 'Scissors') ? `You Win! ${playerSelection} beats ${computerSelection}` :
+            `You Lose! ${computerSelection} beats ${playerSelection}`;
             case 'Paper': 
-            result = (computerSelection === 'Rock') ? `You Win! ${playerSelection} beats ${computerSelection}` 
-            : `You Lose! ${computerSelection} beats ${playerSelection}`;
+            result = (computerSelection === 'Rock') ? `You Win! ${playerSelection} beats ${computerSelection}` :
+            `You Lose! ${computerSelection} beats ${playerSelection}`;
             case 'Scissors': 
-            result = (computerSelection === 'Paper') ? `You Win! ${playerSelection} beats ${computerSelection}` 
-            : `You Lose! ${computerSelection} beats ${playerSelection}`;
+            result = (computerSelection === 'Paper') ? `You Win! ${playerSelection} beats ${computerSelection}` :
+            `You Lose! ${computerSelection} beats ${playerSelection}`;
         }
     }
+    display.textContent = result;
     return result.includes("win") ? [result, 1] : [result, 0];
 }
 
@@ -70,10 +96,13 @@ function game() {
     return winner;
 }
 
-// console.log('Winner is ' + game());
+const setChoice = function (e) {
+    console.log(e.target.value);
+}
 
-// console.log(computerPlay());
+const display = document.querySelector("#display-result");
+// console.log(display);
+// display.textContent = "test";
+const buttons = document.querySelectorAll(".btn");
+buttons.forEach(button => button.addEventListener('click', playRound));
 
-// const playerSelection = "Rock";
-// const computerSelection = computerPlay();
-// console.log(playRound(playerSelection, computerSelection));
