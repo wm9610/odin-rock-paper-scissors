@@ -62,47 +62,90 @@ function playRound(e)
     else {
         switch (playerSelection) {
             case 'Rock': 
-            result = (computerSelection === 'Scissors') ? `You Win! ${playerSelection} beats ${computerSelection}` :
-            `You Lose! ${computerSelection} beats ${playerSelection}`;
+                if(computerSelection === 'Scissors') {
+                    result = `You Win! ${playerSelection} beats ${computerSelection}`;
+                    isPlayerWin(true);
+                }
+                else { 
+                    result = `You Lose! ${computerSelection} beats ${playerSelection}`;
+                    isPlayerWin(false);
+                }
             case 'Paper': 
-            result = (computerSelection === 'Rock') ? `You Win! ${playerSelection} beats ${computerSelection}` :
-            `You Lose! ${computerSelection} beats ${playerSelection}`;
+                if(computerSelection === 'Rock') {
+                    result = `You Win! ${playerSelection} beats ${computerSelection}`;
+                    isPlayerWin(true);
+                }
+                else { 
+                result = `You Lose! ${computerSelection} beats ${playerSelection}`;
+                isPlayerWin(false);
+            
+                }
             case 'Scissors': 
-            result = (computerSelection === 'Paper') ? `You Win! ${playerSelection} beats ${computerSelection}` :
-            `You Lose! ${computerSelection} beats ${playerSelection}`;
+                if(computerSelection === 'Paper') {
+                    result = `You Win! ${playerSelection} beats ${computerSelection}`;
+                    isPlayerWin(true);
+                }
+                else { 
+                result = `You Lose! ${computerSelection} beats ${playerSelection}`;
+                isPlayerWin(false);
+                }
         }
     }
     display.textContent = result;
-    return result.includes("win") ? [result, 1] : [result, 0];
 }
 
-function game() {
-    let score = 0;
-    let resultOfTheRound;
-    let winner;
-    for(let i = 0; i < 6; i++) {
-        let playerSelection = capitalize(prompt("Please enter your choice:").toLowerCase());
-        resultOfTheRound = playRound(playerSelection, computerPlay());
-        score = score + resultOfTheRound[1];
-        console.log(resultOfTheRound[0]);
-        console.log(score);
+function isPlayerWin(value) {
+
+    // console.log(value);
+    value ? playerScore++ : computerScore++;
+    if(playerScore === 5) {
+        display.textContent = "Player Win!"
+        playerScore = 0;
+        computerScore =0;
     }
-    if(score >= 3) {
-        winner = 'Player';
+    else if(computerScore === 5) {
+        display.textContent = "Computer Win!"
+        playerScore = 0;
+        computerScore =0;
     }
-    else {
-        winner = 'Computer';
-    }
-    return winner;
+    runningScore.textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
 }
+
+
+
+// function game() {
+//     let score = 0;
+//     let resultOfTheRound;
+//     let winner;
+//     for(let i = 0; i < 6; i++) {
+//         let playerSelection = capitalize(prompt("Please enter your choice:").toLowerCase());
+//         resultOfTheRound = playRound(playerSelection, computerPlay());
+//         score = score + resultOfTheRound[1];
+//         console.log(resultOfTheRound[0]);
+//         console.log(score);
+//     }
+//     if(score >= 3) {
+//         winner = 'Player';
+//     }
+//     else {
+//         winner = 'Computer';
+//     }
+//     return winner;
+// }
 
 const setChoice = function (e) {
     console.log(e.target.value);
 }
 
+let playerScore = 0;
+let computerScore = 0;
 const display = document.querySelector("#display-result");
-// console.log(display);
-// display.textContent = "test";
+let runningScore = document.createElement('p');
+runningScore.classList.add('text-light', 'h1');
+display.parentNode.insertBefore(runningScore, display);
+runningScore.textContent = "Player: 0 | Computer: 0";
+
+
 const buttons = document.querySelectorAll(".btn");
 buttons.forEach(button => button.addEventListener('click', playRound));
 
