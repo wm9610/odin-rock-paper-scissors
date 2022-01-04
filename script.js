@@ -52,7 +52,6 @@ function capitalize(string) {
 
 function playRound(e) 
 {
-    let result;
     let playerSelection = e.target.value;
     let computerSelection = computerPlay();
     console.log(playerSelection);
@@ -70,25 +69,28 @@ function playRound(e)
                     result = `You Lose! ${computerSelection} beats ${playerSelection}`;
                     isPlayerWin(false);
                 }
+                break;
             case 'Paper': 
                 if(computerSelection === 'Rock') {
                     result = `You Win! ${playerSelection} beats ${computerSelection}`;
                     isPlayerWin(true);
                 }
                 else { 
-                result = `You Lose! ${computerSelection} beats ${playerSelection}`;
-                isPlayerWin(false);
+                    result = `You Lose! ${computerSelection} beats ${playerSelection}`;
+                    isPlayerWin(false);
             
                 }
+                break;
             case 'Scissors': 
                 if(computerSelection === 'Paper') {
                     result = `You Win! ${playerSelection} beats ${computerSelection}`;
                     isPlayerWin(true);
                 }
                 else { 
-                result = `You Lose! ${computerSelection} beats ${playerSelection}`;
-                isPlayerWin(false);
+                    result = `You Lose! ${computerSelection} beats ${playerSelection}`;
+                    isPlayerWin(false);
                 }
+                break;
         }
     }
     display.textContent = result;
@@ -96,19 +98,20 @@ function playRound(e)
 
 function isPlayerWin(value) {
 
-    // console.log(value);
+    console.log(value);
     value ? playerScore++ : computerScore++;
     if(playerScore === 5) {
-        display.textContent = "Player Win!"
+        result = "Player Win!"
         playerScore = 0;
-        computerScore =0;
+        computerScore = 0;
     }
     else if(computerScore === 5) {
-        display.textContent = "Computer Win!"
+        result = "Computer Win!"
         playerScore = 0;
-        computerScore =0;
+        computerScore = 0;
     }
     runningScore.textContent = `Player: ${playerScore} | Computer: ${computerScore}`;
+    // return result;
 }
 
 
@@ -139,6 +142,7 @@ const setChoice = function (e) {
 
 let playerScore = 0;
 let computerScore = 0;
+let result = "";
 const display = document.querySelector("#display-result");
 let runningScore = document.createElement('p');
 runningScore.classList.add('text-light', 'h1');
