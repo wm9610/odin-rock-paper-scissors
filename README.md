@@ -1,4 +1,5 @@
 # odin-rock-paper-scissors
 
-Part 1:
-Complete the logic for rock paper scissors by using javascript
+This project is to practise javascript and bootstrap.
+
+Links: https://wm9610.github.io/odin-rock-paper-scissors/
